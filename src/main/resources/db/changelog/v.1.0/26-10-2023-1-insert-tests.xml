@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+    <changeSet
+            id="26-10-2023-1-insert-tests" author="domashkevich">
+        <insert tableName="test">
+            <column name="name" value="Java Test"/>
+            <column name="description" value="Test for Java developer"/>
+        </insert>
+        <insert tableName="test">
+            <column name="name" value="QA Test"/>
+            <column name="description" value="Test for QA"/>
+        </insert>
+        <insert tableName="test">
+            <column name="name" value="BA Test"/>
+            <column name="description" value="Test for BA"/>
+        </insert>
+
+
+    </changeSet>
+</databaseChangeLog>

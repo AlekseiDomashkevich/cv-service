@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <include file="26-10-2023-1-create-table-test.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-tests.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-direction.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-directions.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-candidate.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-test_of_candidate.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-candidate_direction.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-test_direction.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-create-table-test_history.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-candidates.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-tests_of_canditates.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-test_histories.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-tests_directions.xml" relativeToChangelogFile="true"/>
+    <include file="26-10-2023-1-insert-candidates_directions.xml" relativeToChangelogFile="true"/>
+
+
+
+</databaseChangeLog>

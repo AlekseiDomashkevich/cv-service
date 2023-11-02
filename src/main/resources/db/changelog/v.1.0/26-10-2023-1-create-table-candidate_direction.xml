@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+    <changeSet
+            id="26-10-2023-1-create-table-candidate_direction" author="domashkevich">
+        <createTable tableName="candidate_direction">
+            <column name="candidate_id" type="integer">
+                <constraints nullable="false" primaryKey="true" foreignKeyName="fk_candidate" referencedTableName="candidate"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="direction_id" type="integer">
+                <constraints nullable="false" primaryKey="true" foreignKeyName="fk_direction" referencedColumnNames="id"
+                             referencedTableName="direction"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

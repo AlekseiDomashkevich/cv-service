@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet
+            id="26-10-2023-1-insert-directions" author="domashkevich">
+        <insert tableName="direction">
+            <column name="name" value="Java Developer"/>
+            <column name="description" value="Senior Java developer"/>
+
+        </insert>
+        <insert tableName="direction">
+            <column name="name" value="Manual QA"/>
+            <column name="description" value="Junior manual QA"/>
+
+        </insert>
+        <insert tableName="direction">
+            <column name="name" value="Business Analytic"/>
+            <column name="description" value="Senior BA"/>
+
+        </insert>
+
+
+    </changeSet>
+
+</databaseChangeLog>

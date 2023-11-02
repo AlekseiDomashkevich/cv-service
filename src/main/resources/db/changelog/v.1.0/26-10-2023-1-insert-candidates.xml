@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+    <changeSet
+            id="26-10-2023-1-insert-candidates" author="domashkevich">
+        <insert tableName="candidate">
+            <column name="name" value="Vasiliy"/>
+            <column name="surname" value="Ivanovich"/>
+            <column name="lastname" value="Pupkin"/>
+            <column name="description" value="Manual QA"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Ivan"/>
+            <column name="surname" value="Petrovich"/>
+            <column name="lastname" value="Ivanov"/>
+            <column name="description" value="Senior Java Developer"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Svetlana"/>
+            <column name="surname" value="Ivanovna"/>
+            <column name="lastname" value="Petrova"/>
+            <column name="description" value="Junior HR"/>
+        </insert>
+
+
+    </changeSet>
+</databaseChangeLog>

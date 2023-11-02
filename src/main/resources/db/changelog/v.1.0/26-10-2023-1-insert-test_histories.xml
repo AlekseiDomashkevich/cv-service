@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+    <changeSet
+            id="26-10-2023-1-insert-test_histories" author="domashkevich">
+        <insert tableName="test_history">
+            <column name="test_of_candidate_id" value="1"/>
+            <column name="date" value="2023-10-11"/>
+            <column name="assessment" value="78"/>
+
+        </insert>
+        <insert tableName="test_history">
+            <column name="test_of_candidate_id" value="1"/>
+            <column name="date" value="2023-10-12"/>
+            <column name="assessment" value="100"/>
+
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
