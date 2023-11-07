@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -16,7 +17,6 @@ public class CandidateDto {
     private String name;
     private String surname;
     private String lastname;
-    private String photo_link;
-    private String cv_link;
-    private Set<DirectionDto> directions;
+    private String description;
+    private List<DirectionDto> directions;
 }

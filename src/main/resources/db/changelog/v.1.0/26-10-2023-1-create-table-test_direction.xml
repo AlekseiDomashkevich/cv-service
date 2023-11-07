@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
     <changeSet
             id="26-10-2023-1-create-table-test_direction" author="domashkevich">
-        <createTable tableName="test_direction">
+        <createTable tableName="direction_test">
             <column name="test_id" type="integer">
                 <constraints nullable="false" primaryKey="true" foreignKeyName="fk_test" referencedTableName="test"
                              referencedColumnNames="id"/>
@@ -17,5 +17,7 @@
             </column>
 
         </createTable>
+
     </changeSet>
+
 </databaseChangeLog>

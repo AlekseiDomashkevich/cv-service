@@ -5,16 +5,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
     <changeSet
-            id="26-10-2023-1-insert-tests_of_candidates" author="domashkevich">
-        <insert tableName="test_of_candidate">
-            <column name="test_id" value="1"/>
-            <column name="candidate_id" value="1"/>
-
-        </insert>
-        <insert tableName="test_of_candidate">
-            <column name="test_id" value="2"/>
+            id="26-10-2023-1-insert-direction_candidate" author="domashkevich">
+        <insert tableName="direction_candidate">
+            <column name="direction_id" value="1"/>
             <column name="candidate_id" value="1"/>
         </insert>
-
+        <insert tableName="direction_candidate">
+            <column name="direction_id" value="1"/>
+            <column name="candidate_id" value="2"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

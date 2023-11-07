@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,17 +30,23 @@ public class DirectionService {
     }
 
 
-    public DirectionDto findById(Long id) {
-        return Optional.of(getById(id)).map(mapper::modelToDto).get();
+    public Optional<DirectionDto> findById(Long id) {
+        return repo.findById(id).map(mapper::modelToDto);
     }
 
-
+    @Transactional
     public DirectionDto save(DirectionDto directionDto) {
         return mapper.modelToDto(repo.save(mapper.dtoToModel(directionDto)));
     }
 
-    private Direction getById(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException(
-                "Direction with ID:" + id + " not found"));
+    @Transactional
+    public Optional<DirectionDto> update(DirectionDto object, Long id) {
+        return repo.findById(id)
+                .map(direction -> {
+                    direction.setName(object.getName());
+                    direction.setDescription(object.getDescription());
+                    return mapper.modelToDto(repo.save(direction));
+                });
     }
+
 }

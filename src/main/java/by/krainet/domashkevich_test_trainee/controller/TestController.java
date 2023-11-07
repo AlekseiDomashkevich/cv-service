@@ -2,6 +2,8 @@ package by.krainet.domashkevich_test_trainee.controller;
 
 import by.krainet.domashkevich_test_trainee.dto.TestDto;
 import by.krainet.domashkevich_test_trainee.service.TestService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.PageRequest;
@@ -13,39 +15,42 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/tests")
 public class TestController {
 
     private final TestService service;
 
-    @GetMapping("/tests")
+    @Operation(summary = "Get all tests with paging and filtration by name")
+    @GetMapping()
     public ResponseEntity<List<TestDto>> getTests(
-            @RequestParam(required = false) String name,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size) {
+            @Parameter(description = "Filter by name") @RequestParam(required = false) String name,
+            @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size") @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(service.findAll(name, PageRequest.of(page, size)));
     }
 
-    @GetMapping("/test/{id}")
+    @Operation(summary = "Get test by ID")
+    @GetMapping("/{id}")
     public ResponseEntity<TestDto> getTestById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        return service.findById(id)
+                .map(test -> ResponseEntity.ok().body(test))
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
+    @Operation(summary = "Save new test")
     @SneakyThrows
-    @PostMapping("/test")
+    @PostMapping()
     public ResponseEntity<TestDto> saveTest(@RequestBody TestDto testDto) {
         TestDto result = service.save(testDto);
         return ResponseEntity.created(new URI("/test/" + result.getId())).body(result);
     }
 
+    @Operation(summary = "Update test by ID")
     @SneakyThrows
-    @PutMapping("/test/{id}")
-    public ResponseEntity<TestDto> updateTest(@RequestBody TestDto newTestDto, @PathVariable Long id) {
-        TestDto result = service.findById(id);
-        result.setName(newTestDto.getName());
-        result.setDescription(newTestDto.getDescription());
-        result.setDirections(newTestDto.getDirections());
-        return ResponseEntity.ok().body(service.save(result));
+    @PutMapping("/{id}")
+    public ResponseEntity<TestDto> updateTest(@RequestBody TestDto testDto, @PathVariable Long id) {
+        return service.update(testDto, id)
+                .map(test -> ResponseEntity.ok().body(test))
+                .orElseGet(ResponseEntity.notFound()::build);
     }
-
-
 }

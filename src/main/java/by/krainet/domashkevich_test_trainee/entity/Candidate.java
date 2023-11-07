@@ -1,18 +1,17 @@
 package by.krainet.domashkevich_test_trainee.entity;
 
+import io.swagger.v3.oas.models.annotations.OpenAPI31;
 import jakarta.persistence.*;
 import lombok.*;
 
 
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-@EqualsAndHashCode(exclude = "directionSet")
-@ToString(exclude = "directionSet")
 @Table(name = "candidate")
 public class Candidate {
     @Id
@@ -38,10 +37,15 @@ public class Candidate {
     private String cvLink;
 
     @ManyToMany
-    @JoinTable(name = "candidate_direction",
+    @JoinTable(name = "direction_candidate",
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "direction_id"))
-    private Set<Direction> directions;
+    private List<Direction> directions = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "candidate")
+    private List<CandidateTest> candidateTests = new ArrayList<>();
+
 
 
 }

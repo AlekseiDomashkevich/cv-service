@@ -2,6 +2,8 @@ package by.krainet.domashkevich_test_trainee.controller;
 
 import by.krainet.domashkevich_test_trainee.dto.DirectionDto;
 import by.krainet.domashkevich_test_trainee.service.DirectionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.PageRequest;
@@ -13,44 +15,48 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/directions")
 public class DirectionController {
-
 
     private final DirectionService service;
 
-
-    @GetMapping("/directions")
+    @Operation(summary = "Get all directions",
+            description = "Return all directions with filtration by name and pagination")
+    @GetMapping()
     public ResponseEntity<List<DirectionDto>> getDirections(
-            @RequestParam(required = false) String name,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
+            @Parameter(description = "Filter by direction name") @RequestParam(required = false) String name,
+            @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size") @RequestParam(defaultValue = "10") int size
     ) {
 
         return ResponseEntity.ok(service.findAll(name, PageRequest.of(page, size)));
     }
 
-    @GetMapping("/direction/{id}")
+    @Operation(summary = "Get direction by ID")
+    @GetMapping("/{id}")
     public ResponseEntity<DirectionDto> getDirectionById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        return service.findById(id)
+                .map(directionDto -> ResponseEntity.ok().body(directionDto))
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
+    @Operation(summary = "Create new direction")
     @SneakyThrows
-    @PostMapping("/direction")
-    public ResponseEntity<DirectionDto> saveDirection(@RequestBody DirectionDto newDirectionDto) {
+    @PostMapping()
+    public ResponseEntity<DirectionDto> saveDirection(@RequestBody DirectionDto directionDto) {
 
-        DirectionDto result = service.save(newDirectionDto);
-        return ResponseEntity.created(new URI("/direction/" + result.getId())).body(result);
+        DirectionDto result = service.save(directionDto);
+        return ResponseEntity.created(new URI("/directions/" + result.getId())).body(result);
     }
 
-    @PutMapping("/direction/{id}")
+    @Operation(summary = "Update direction by ID")
+    @PutMapping("/{id}")
     public ResponseEntity<DirectionDto> updateDirection(
             @PathVariable Long id,
-            @RequestBody DirectionDto newDirectionDto) {
-        DirectionDto directionDto = service.findById(id);
-        directionDto.setName(newDirectionDto.getName());
-        directionDto.setDescription(newDirectionDto.getDescription());
-        return ResponseEntity.ok().body(service.save(directionDto));
+            @RequestBody DirectionDto directionDto) {
+        return service.update(directionDto, id)
+                .map(updateDirectionDto -> ResponseEntity.ok().body(updateDirectionDto))
+                .orElseGet(ResponseEntity.notFound()::build);
     }
-
 
 }

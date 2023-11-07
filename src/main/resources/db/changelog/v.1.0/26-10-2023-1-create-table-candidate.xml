@@ -11,13 +11,13 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="varchar(32)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="surname" type="varchar(32)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="lastname" type="varchar(32)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="photo_link" type="varchar(256)">
                 <constraints nullable="true"/>
@@ -26,7 +26,7 @@
                 <constraints nullable="true"/>
             </column>
             <column name="description" type="varchar(256)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
 
         </createTable>

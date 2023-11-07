@@ -3,16 +3,14 @@ package by.krainet.domashkevich_test_trainee.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-@EqualsAndHashCode(exclude = {"candidateSet", "testSet"})
-@ToString(exclude = {"candidateSet", "testSet"})
+
 @Table(name = "direction")
 public class Direction {
 
@@ -27,18 +25,22 @@ public class Direction {
     @Column(name = "description")
     private String description;
 
-//    @ManyToMany
-//    @JoinTable(name = "candidate_direction",
-//            joinColumns = @JoinColumn(name = "direction_id"),
-//            inverseJoinColumns = @JoinColumn(name = "candidate_id"))
-//    private Set<Candidate> candidateSet;
+    @ManyToMany(mappedBy = "directions")
+    private List<Candidate> candidates = new ArrayList<>();
 
-//    @ManyToMany
-//    @JoinTable(name = "test_direction",
-//            joinColumns = @JoinColumn(name="direction_id"),
-//            inverseJoinColumns = @JoinColumn(name="test_id"))
-//    private Set<Test> tests = new HashSet<>();
+    @ManyToMany(mappedBy = "directions")
+    private List<Test> tests = new ArrayList<>();
 
+
+    public void addTest(Test test){
+        tests.add(test);
+        test.getDirections().add(this);
+    }
+
+    public void addCandidate(Candidate candidate){
+        candidates.add(candidate);
+        candidate.getDirections().add(this);
+    }
 
 
 }

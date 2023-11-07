@@ -3,7 +3,9 @@ package by.krainet.domashkevich_test_trainee.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,8 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Table(name = "test")
-@EqualsAndHashCode(exclude = "directionSet")
-@ToString(exclude = "directionSet")
 public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,12 @@ public class Test {
     private String description;
 
     @ManyToMany
-    @JoinTable(name = "test_direction",
+    @JoinTable(name = "direction_test",
             joinColumns = @JoinColumn(name = "test_id"),
             inverseJoinColumns = @JoinColumn(name = "direction_id"))
-    private Set<Direction> directions = new HashSet<>();
+    private List<Direction> directions = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "test")
+    private List<CandidateTest> candidateTests = new ArrayList<>();
 }

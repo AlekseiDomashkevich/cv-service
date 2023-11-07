@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
     <changeSet
-            id="26-10-2023-1-create-table-candidate_direction" author="domashkevich">
-        <createTable tableName="candidate_direction">
+            id="26-10-2023-1-create-table-direction_candidate" author="domashkevich">
+        <createTable tableName="direction_candidate">
             <column name="candidate_id" type="integer">
                 <constraints nullable="false" primaryKey="true" foreignKeyName="fk_candidate" referencedTableName="candidate"
                              referencedColumnNames="id"/>
