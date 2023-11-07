@@ -4,6 +4,7 @@ import by.krainet.domashkevich_test_trainee.dto.TestDto;
 import by.krainet.domashkevich_test_trainee.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/tests")
+@Tag(name = "Test controller",
+        description = "Controller manages tests")
 public class TestController {
 
     private final TestService service;

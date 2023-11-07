@@ -4,6 +4,7 @@ import by.krainet.domashkevich_test_trainee.dto.CandidateDto;
 import by.krainet.domashkevich_test_trainee.service.CandidateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -22,6 +23,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/candidates")
+@Tag(name = "Candidate controller",
+        description = "Controller manages candidates, also it manages photo and cv files of candidate")
 public class CandidateController {
     private final CandidateService service;
 

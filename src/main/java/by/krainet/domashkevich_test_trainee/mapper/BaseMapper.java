@@ -1,7 +1,6 @@
 package by.krainet.domashkevich_test_trainee.mapper;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -17,6 +16,4 @@ public interface BaseMapper<D, M> {
                 .map(this::dtoToModel)
                 .collect(Collectors.toList());
     }
-
-
 }

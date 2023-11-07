@@ -1,9 +1,13 @@
 package by.krainet.domashkevich_test_trainee.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -32,15 +36,14 @@ public class Direction {
     private List<Test> tests = new ArrayList<>();
 
 
-    public void addTest(Test test){
+    public void addTest(Test test) {
         tests.add(test);
         test.getDirections().add(this);
     }
 
-    public void addCandidate(Candidate candidate){
+    public void addCandidate(Candidate candidate) {
         candidates.add(candidate);
         candidate.getDirections().add(this);
     }
-
 
 }

@@ -4,6 +4,7 @@ import by.krainet.domashkevich_test_trainee.dto.DirectionDto;
 import by.krainet.domashkevich_test_trainee.service.DirectionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/directions")
+@Tag(name = "Direction controller",
+        description = "Controller manages directions")
 public class DirectionController {
 
     private final DirectionService service;

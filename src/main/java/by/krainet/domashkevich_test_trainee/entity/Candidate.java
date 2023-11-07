@@ -1,11 +1,13 @@
 package by.krainet.domashkevich_test_trainee.entity;
 
-import io.swagger.v3.oas.models.annotations.OpenAPI31;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -45,7 +47,5 @@ public class Candidate {
     @Builder.Default
     @OneToMany(mappedBy = "candidate")
     private List<CandidateTest> candidateTests = new ArrayList<>();
-
-
 
 }
